@@ -1,0 +1,45 @@
+name: Docker Compose Build
+
+on:
+    pull_request: ~
+
+jobs:
+    docker-compose-build:
+        runs-on: ubuntu-20.04
+
+        timeout-minutes: 30
+
+        env:
+            APP_ENV: test_cached
+            COMPOSE_INTERACTIVE_NO_CLI: 1 # Prevent "the input device is not a TTY" error
+
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   
+                name: Check Docker version
+                run: docker --version
+
+            -   
+                name: Pull Docker images
+                run: docker-compose pull
+
+            -
+                name: Build Docker containers
+                run: docker-compose build
+
+            -
+                name: Boot Docker containers
+                run: docker-compose up --detach
+
+            -
+                name: Install PHP dependencies
+                run: docker-compose exec -T php composer install  --prefer-dist --no-autoloader --no-scripts --no-interaction --no-cache
+
+            -
+                name: Run PHPSpec
+                run: docker-compose exec -T php /srv/sylius/vendor/bin/phpspec run --ansi -f progress --no-interaction
+
+            -
+                name: Run non-JS Behat
+                run: docker-compose exec -T php /srv/sylius/vendor/bin/behat --colors --strict --no-interaction -vvv -f progress --tags="~@javascript && ~@todo && ~@cli"
