@@ -10,7 +10,7 @@ services:
         #   - quay.io/sylius/php:latest
         #   - quay.io/sylius/nodejs:latest
         #   - quay.io/sylius/nginx:latest
-    image: php:latest
+    #image: quay.io/sylius/php:latest
     depends_on:
       - mysql
     environment:
@@ -53,7 +53,7 @@ services:
       #   - quay.io/sylius/php:latest
       #   - quay.io/sylius/nodejs:latest
       #   - quay.io/sylius/nginx:latest
-    image: node:latest
+    #image: quay.io/sylius/node:latest
     depends_on:
       - php
     environment:
@@ -70,12 +70,12 @@ services:
     build:
       context: .
       target: sylius_nginx
-    image: nginx:latest
       # Quay does not work, should be replaced in future with f.e. ghcr.io
       # cache_from:
       #   - quay.io/sylius/php:latest
       #   - quay.io/sylius/nodejs:latest
       #   - quay.io/sylius/nginx:latest
+    #image: quay.io/sylius/nginx:latest
     depends_on:
       - php
       - node # to ensure correct build order
