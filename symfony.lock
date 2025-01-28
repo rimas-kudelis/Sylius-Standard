@@ -61,6 +61,18 @@
             "ref": "1e012e04f573524ca83795cd19df9ea690adb604"
         }
     },
+    "friendsofsymfony/rest-bundle": {
+        "version": "3.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "3762cc4e4f2d6faabeca5a151b41c8c791bd96e5"
+        },
+        "files": [
+            "config/packages/fos_rest.yaml"
+        ]
+    },
     "knplabs/knp-gaufrette-bundle": {
         "version": "v0.9.0"
     },
@@ -186,6 +198,19 @@
     },
     "sylius/mailer-bundle": {
         "version": "v2.1.0"
+    },
+    "sylius/paypal-plugin": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.0",
+            "ref": "57902d9acd42347cbd964c996e75df0ac9028c9b"
+        },
+        "files": [
+            "config/packages/sylius_paypal.yaml",
+            "config/routes/sylius_paypal.yaml"
+        ]
     },
     "sylius/resource-bundle": {
         "version": "1.12",
