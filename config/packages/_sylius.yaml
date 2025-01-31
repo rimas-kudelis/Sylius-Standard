@@ -46,8 +46,12 @@ sylius_channel:
         channel:
             classes:
                 model: App\Entity\Channel\Channel
+
 sylius_core:
     resources:
+        avatar_image:
+            classes:
+                model: App\Entity\User\AvatarImage
         product_image:
             classes:
                 model: App\Entity\Product\ProductImage
@@ -66,6 +70,9 @@ sylius_core:
         channel_pricing_log_entry:
             classes:
                 model: App\Entity\Channel\ChannelPricingLogEntry
+        shop_billing_data:
+            classes:
+                model: App\Entity\Channel\ShopBillingData
 
 sylius_currency:
     resources:
@@ -132,6 +139,7 @@ sylius_payum:
         payment_security_token:
             classes:
                 model: App\Entity\Payment\PaymentSecurityToken
+
 sylius_product:
     resources:
         product:
@@ -240,6 +248,7 @@ sylius_taxonomy:
             translation:
                 classes:
                     model: App\Entity\Taxonomy\TaxonTranslation
+
 sylius_user:
     resources:
         admin:
@@ -254,3 +263,19 @@ sylius_user:
             user:
                 classes:
                     model: App\Entity\User\UserOAuth
+
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.base#stylesheets':
+            app_styles:
+                template: 'admin/stylesheets.html.twig'
+        'sylius_admin.base#javascripts':
+            app_javascripts:
+                template: 'admin/javascripts.html.twig'
+
+        'sylius_shop.base#stylesheets':
+            app_styles:
+                template: 'shop/stylesheets.html.twig'
+        'sylius_shop.base#javascripts':
+            app_javascripts:
+                template: 'shop/javascripts.html.twig'
